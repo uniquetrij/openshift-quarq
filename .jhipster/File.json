@@ -1,0 +1,47 @@
+{
+  "name": "File",
+  "fields": [
+    {
+      "fieldName": "identifier",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "location",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "uri",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "encryption",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "encryptionAlgorithm",
+      "fieldType": "EncryptionAlgorithm",
+      "fieldValues": "SHA256,SHA512"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "employee",
+      "otherEntityRelationshipName": "files",
+      "relationshipName": "employee",
+      "otherEntityField": "id",
+      "ownerSide": true
+    }
+  ],
+  "changelogDate": "20220224103745",
+  "entityTableName": "file",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

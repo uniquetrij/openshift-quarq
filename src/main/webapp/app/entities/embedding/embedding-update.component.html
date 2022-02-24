@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-embedding-heading">Create or edit a Embedding</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_embedding">Embedding</label>
+                    <div>
+                        <div *ngIf="editForm.get('embedding')!.value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('embeddingContentType')!.value, editForm.get('embedding')!.value)">open</a><br>
+                            <span class="pull-left">{{ editForm.get('embeddingContentType')!.value }}, {{ byteSize(editForm.get('embedding')!.value) }}</span>
+                            <button type="button" (click)="editForm.patchValue({embedding: null});editForm.patchValue({embeddingContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_embedding" (change)="setFileData($event, 'embedding', false)"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="embedding" id="field_embedding"
+                           formControlName="embedding"/>
+                    <input type="hidden" class="form-control" name="embeddingContentType" id="field_embeddingContentType"
+                           formControlName="embeddingContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label for="field_employees">Employee</label>
+                    <select class="form-control" id="field_employees" multiple name="employees" formControlName="employees">
+                        <option [ngValue]="getSelected(editForm.get('employees')!.value, employeeOption)" *ngFor="let employeeOption of employees; trackBy: trackById">{{ employeeOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="file">
+            <h2><span>File</span> {{ file.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Identifier</span></dt>
+                <dd>
+                    <span>{{ file.identifier }}</span>
+                </dd>
+                <dt><span>Location</span></dt>
+                <dd>
+                    <span>{{ file.location }}</span>
+                </dd>
+                <dt><span>Uri</span></dt>
+                <dd>
+                    <span>{{ file.uri }}</span>
+                </dd>
+                <dt><span>Encryption</span></dt>
+                <dd>
+                    <span>{{ file.encryption }}</span>
+                </dd>
+                <dt><span>Encryption Algorithm</span></dt>
+                <dd>
+                    <span>{{ file.encryptionAlgorithm }}</span>
+                </dd>
+                <dt><span>Employee</span></dt>
+                <dd>
+                    <span *ngFor="let employee of file.employees; let last = last">
+                        <a [routerLink]="['/employee', employee?.id, 'view']">{{ employee.id }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/file', file.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

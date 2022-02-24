@@ -1,0 +1,75 @@
+<div>
+    <h2 id="page-heading">
+        <span>Files</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-file" [routerLink]="['/file/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new File
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="files?.length === 0">
+        <span>No files found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="files && files.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Identifier</span></th>
+                    <th scope="col" ><span>Location</span></th>
+                    <th scope="col" ><span>Uri</span></th>
+                    <th scope="col" ><span>Encryption</span></th>
+                    <th scope="col" ><span>Encryption Algorithm</span></th>
+                    <th scope="col" ><span>Employee</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let file of files ;trackBy: trackId">
+                    <td><a [routerLink]="['/file', file.id, 'view']">{{ file.id }}</a></td>
+                    <td>{{ file.identifier }}</td>
+                    <td>{{ file.location }}</td>
+                    <td>{{ file.uri }}</td>
+                    <td>{{ file.encryption }}</td>
+                    <td>{{ file.encryptionAlgorithm }}</td>
+                    <td>
+                        <span *ngFor="let employee of file.employees; let last = last">
+                            <a class="form-control-static" [routerLink]="['/employee', employee?.id, 'view']">{{ employee.id }}</a>{{ last ? '' : ', ' }}
+                        </span>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/file', file.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/file', file.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(file)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

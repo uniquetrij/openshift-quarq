@@ -1,0 +1,46 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.infy.stg.quarq"
+    },
+    "jhipsterVersion": "6.10.5",
+    "applicationType": "monolith",
+    "baseName": "quarq",
+    "packageName": "com.infy.stg.quarq",
+    "packageFolder": "com/infy/stg/quarq",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "no",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "postgresql",
+    "messageBroker": false,
+    "buildTool": "maven",
+    "jwtSecretKey": "YzIxZDAxMmVhZjBkODg5YzA0MTQ5NjMzMmQ1MGM5Y2QyYTBlODNkNjRmNjg0ZTU1NTQ5ZDA3NmU4Yjc5ODQzMWZmMDQ0OGQ5OGRlYTBlYWNkY2JiNzg5MzMzYTk4ZTcxNTUzMjhhMjE0ZDNkYWViOGI2OWQxNWI5OTYwNWViZWY=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "creationTimestamp": 1645693011897,
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-quarkus",
+        "version": "1.1.1"
+      }
+    ],
+    "enableTranslation": false,
+    "blueprints": [
+      {
+        "name": "generator-jhipster-quarkus",
+        "version": "1.1.1"
+      }
+    ]
+  }
+}

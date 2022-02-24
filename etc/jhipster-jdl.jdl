@@ -1,0 +1,52 @@
+
+entity Person {
+    name String
+    birth Instant
+    status String
+    country String
+    city String
+}
+entity Employee {
+    identifier String
+    name String
+    encryptionKey String    
+}
+
+entity Embedding {
+    embedding Blob
+}
+
+entity File {
+    identifier String
+    location String
+    uri String
+    encryption Boolean
+    encryptionAlgorithm EncryptionAlgorithm
+}
+
+relationship ManyToMany {
+    Embedding{employee} to Employee {embeddings}
+    File{employee} to Employee {files}
+}
+
+enum EncryptionType {
+    SYMMETRIC, ASYMETTRIC
+}
+
+enum EncryptionAlgorithm {
+    SHA256, SHA512
+}
+
+// Set pagination options
+paginate Employee with infinite-scroll
+paginate Embedding with pagination
+
+// Use Data Transfer Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl // except Employee, Job
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
+
